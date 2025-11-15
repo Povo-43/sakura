@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>さくら雑談王国 - 1000人超えの大規模Discord雑談コミュニティ</title>
+
+    <meta property="og:url" content="https://sakura.kotoca.net">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="さくら雑談王国">
+    <meta property="og:description" content="総メンバー数1000人超えの大規模Discord雑談コミュニティ。今すぐあなたも参加しませんか？">
+    <meta property="og:site_name" content="さくら雑談王国">
+    <meta property="og:image" content="https://sakura.kotoca.net/ogp.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@SakuraTKOficial">    
+</head>
+<body>
+
+    <header>
+        <h1>さくら雑談王国</h1>
+        <p>1000人超えの大規模Discord雑談コミュニティ</p>
+        <button onclick="invite()">さくら雑談王国に参加する（無料）</button>
+    </header>
+
+    <main>
+        <section id="icon">
+            <h2>サーバーアイコン</h2>
+            <img src="【サーバーアイコン画像のURLを入力】" alt="さくら雑談王国のサーバーアイコン">
+        </section>
+
+        <section id="features">
+            <h2>さくら雑談王国のおすすめポイント</h2>
+            <ul>
+                <li>
+                    <h3>① 多様なチャンネル</h3>
+                    <p>【多様なチャンネルについての具体的な説明を入力】</p>
+                </li>
+                <li>
+                    <h3>② イベント開催</h3>
+                    <p>【イベント開催についての具体的な説明を入力】</p>
+                </li>
+                <li>
+                    <h3>③ 宣伝可能</h3>
+                    <p>【宣伝についての具体的な説明を入力】</p>
+                </li>
+            </ul>
+            <button onclick="invite()">いますぐ参加して仲間を見つける</button>
+        </section>
+
+        <section id="bots">
+            <h2>Bot紹介</h2>
+            <p>サーバーライフをサポートする便利なBotたち。</p>
+            <ul>
+                <li>【Botの名前1】: 【主な機能を入力】</li>
+                <li>【Botの名前2】: 【主な機能を入力】</li>
+                <li>【Botの名前3】: 【主な機能を入力】</li>
+                </ul>
+        </section>
+
+        <section id="server-info">
+            <h2>サーバー情報</h2>
+            <p>現在のサーバーの賑わいをチェック！</p>
+            <div id="api-data-area">
+                <p>現在のメンバー数: <span id="member-count">【JavaScriptでの表示を想定。仮の人数を入力】</span>人</p>
+                <p>現在のオンライン数: <span id="online-count">【JavaScriptでの表示を想定。仮の人数を入力】</span>人</p>
+                <p>※ 最新の情報はJavaScriptによってここに表示されます。</p>
+            </div>
+        </section>
+
+        <section id="rules">
+            <h2>サーバールール</h2>
+            <p>皆が安心して利用するための基本的なルールです。詳細はサーバー内でご確認ください。</p>
+            <ul>
+                <li>【ルール1を入力】</li>
+                <li>【ルール2を入力】</li>
+                <li>【ルール3を入力】</li>
+                </ul>
+            <button onclick="invite()">ルールを確認したら参加してみよう！</button>
+        </section>
+
+        <section id="admin">
+            <h2>運営紹介</h2>
+            <h3>鯖主：はと</h3>
+            <p>【鯖主「はと」様の紹介文を入力】</p>
+            
+            </section>
+
+        <section id="sns">
+            <h2>公式SNS</h2>
+            <ul>
+                <li>
+                    <a href="【公式XのURLを入力】" target="_blank" rel="noopener noreferrer">X (旧Twitter)</a>
+                </li>
+                <li>
+                    <a href="【公式YouTubeチャンネルのURLを入力】" target="_blank" rel="noopener noreferrer">YouTube</a>
+                </li>
+            </ul>
+        </section>
+
+        <section id="faq">
+            <h2>よくある質問（FAQ）</h2>
+            <dl>
+                <dt>【質問1を入力】</dt>
+                <dd>【回答1を入力】</dd>
+                <dt>【質問2を入力】</dt>
+                <dd>【回答2を入力】</dd>
+            </dl>
+        </section>
+
+        <section id="contact">
+            <h2>お問い合わせ</h2>
+            <p>ご意見やご質問、トラブル報告はこちらからお願いいたします。</p>
+            <p>【連絡先メールアドレス、または問い合わせフォームのURLを入力】</p>
+        </section>
+
+        <section class="join-button-footer">
+            <button onclick="invite()">さくら雑談王国に参加する</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; さくら雑談王国 All Rights Reserved.</p>
+        <script>
+            function invite() {
+                const params = new URLSearchParams(window.location.search);
+                if (params.has("invite") && /^[A-Za-z0-9-]+$/.test(params.get("invite"))) {
+                    window.open('https://discord.gg/' + params.get("invite"), '_blank');
+                }else{
+                    window.open('https://discord.gg/z7AmmNHvKR', '_blank');
+                }
+            }
+        </script>
+    </footer>
+
+</body>
+</html>
