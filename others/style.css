@@ -1,19 +1,21 @@
 /* fonts */
 @import url('https://fonts.googleapis.com/css2?family=WDXL+Lubrifont+JP+N&display=swap');
 
-.wdxl-lubrifont-jp-n-regular {
+* {
   font-family: "WDXL Lubrifont JP N", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
 
 :root {
-    
+    --brue: #6fb8c1;
 }
-
+/* グローバル */
 html,body{
     margin: 0;
+    scroll-behavior: smooth;
 }
+
 body{
     background-image: url(../assets/server_icon.png);
     background-position: center;
@@ -22,14 +24,78 @@ body{
     background-attachment: fixed;
 }
 
+/* 参加ボタン共通デザイン */
+.join_button{
+    background-color: #fff;
+    padding: 1em 2em;
+    display: block;
+    margin: 10px auto;
+    font-size: 20px;
+    border: var(--brue) 5px solid;
+    box-shadow: #6c9aa5 7px 7px 0 0;
+    transition: all 0.1s;
+}
+.join_button:hover{
+    background-color: var(--brue);
+    box-shadow: var(--brue) 7px 7px 0 0;
+    color: #fff;
+}
+.join_button.clicked {
+    background-color: #f7e3e9;
+}
+
+
+/* 改装中表示 */
+header{
+    position: fixed;
+    width: 100svw;
+    text-align: center;
+    background-color: #ffeaea;
+}
+header p{
+    text-align: center;
+    color: #ff0000;
+}
+
+/* トップの要素 */
 #top{
-    background-color: #ffffff55;
+    background-color: #000000aa;
     height: 90vh;
     margin: 0;
+    display: flex;
+    flex-direction: column;
 }
 #top div{
-    height: 80vh;
+    height: fit-content;
     width: 90vw;
     min-width: 320px;
     margin: auto;
+    text-align: center;
 }
+#top h1{
+    color: #fff;
+    font-size: 4rem;
+    margin: 0;
+}
+#top p{
+    color: #ddd;
+    font-size: 1.5rem;
+}
+#top a{
+    text-align: center;
+}
+#top img{
+    height: 45px;
+    width: 80px;
+    margin: 0 auto 20px auto;
+    animation: float 1.5s ease-in-out infinite;
+}
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px); /* 上に5px移動 */
+    }
+}
+

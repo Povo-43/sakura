@@ -16,7 +16,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>さくら雑談王国 - 1000人超えの大規模Discord雑談コミュニティ</title>
+
     <link rel="stylesheet" href="./others/style.css">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
 
     <meta property="og:url" content="https://sakura.kotoca.net">
     <meta property="og:type" content="website">
@@ -30,6 +32,7 @@
 <body>
 
     <header>
+        <p>このページは現在改装中です。</p>
     </header>
 
     <main>
@@ -37,12 +40,11 @@
             <div>
                 <h1>さくら雑談王国</h1>
                 <p>1000人超えの大規模Discord雑談コミュニティ</p>
-                <button onclick="invite()">さくら雑談王国に参加する</button>
+                <button class="join_button" onclick="invite()">さくら雑談王国に参加する</button>
             </div>
-        </section>
-        <section id="icon">
-            <h2>サーバーアイコン</h2>
-            <img src="【サーバーアイコン画像のURLを入力】" alt="さくら雑談王国のサーバーアイコン">
+            <a href="#features">
+                <img src="./assets/icons/scroll.webp" alt="スクロールアイコン">
+            </a>
         </section>
 
         <section id="features">
@@ -61,7 +63,7 @@
                     <p>【宣伝についての具体的な説明を入力】</p>
                 </li>
             </ul>
-            <button onclick="invite()">いますぐ参加して仲間を見つける</button>
+            <button class="join_button" onclick="invite()">参加する</button>
         </section>
 
         <section id="bots">
@@ -92,7 +94,7 @@
                 <li>【ルール2を入力】</li>
                 <li>【ルール3を入力】</li>
                 </ul>
-            <button onclick="invite()">ルールを確認したら参加してみよう！</button>
+            <button class="join_button" onclick="invite()">参加する</button>
         </section>
 
         <section id="admin">
@@ -131,7 +133,7 @@
         </section>
 
         <section class="join-button-footer">
-            <button onclick="invite()">さくら雑談王国に参加する</button>
+            <button class="join_button" onclick="invite()">参加する</button>
         </section>
 
     </main>
@@ -139,14 +141,16 @@
     <footer>
         <p>&copy; さくら雑談王国 All Rights Reserved.</p>
         <script>
-            function invite() {
-                const params = new URLSearchParams(window.location.search);
-                if (params.has("invite") && /^[A-Za-z0-9-]+$/.test(params.get("invite"))) {
-                    window.open('https://discord.gg/' + params.get("invite"), '_blank');
-                }else{
-                    window.open('https://discord.gg/z7AmmNHvKR', '_blank');
-                }
-            }
+        document.querySelector('.join_button').addEventListener('click', async () => {
+            await new Promise(resolve => setTimeout(resolve, 100));
+
+            const params = new URLSearchParams(window.location.search);
+            const code = params.has("invite") && /^[A-Za-z0-9-]+$/.test(params.get("invite"))
+                ? params.get("invite")
+                : 'z7AmmNHvKR';
+
+            window.open('https://discord.gg/' + code, '_blank');
+        });
         </script>
     </footer>
 
