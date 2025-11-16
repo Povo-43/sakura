@@ -227,7 +227,16 @@ header p{
     text-align: left;
 }
 #bots li a{
-    width: 100%;
+    display: block;
+    padding: 1em;
+    margin: 1em 0;
+    background-color: var(--brue);
+    color: #fff;
+    text-decoration: none;
     border: var(--brue) 5px solid;
     box-shadow: #6c9aa5 7px 7px 0 0;
+}
+#bots li a:hover{
+    background-color: #fff;
+    color: #000;
 }
