@@ -102,8 +102,8 @@
                 <p>サーバーライフをサポートするBotたち。</p>
             </div>
             <div>
-                <ul>
-                    <li>
+                <ul id="bots_ul">
+                    <li class="bots_sakurabot">
                         <h3>SakuraBot</h3>
                         <p>
                             さくら雑談王国独自のbot。認証などを請け負います。<br>
@@ -112,124 +112,182 @@
                         <a href="https://kiyaku.bot.sakurahp.f5.si/teams/">規約</a>
                         <a href="https://kiyaku.bot.sakurahp.f5.si/privacy/">プライバシーポリシー</a>
                     </li>
-                    
+                    <li style="grid-row: 1 / 2; grid-column: 2 / 3;">
+                        <h3>その他bot</h3>
+                        <p>現在取得しています。。。</p>
+                    </li>
                 </ul>
             </div>
         </section>
 
         <section id="rules">
             <h2>サーバールール</h2>
-            <p>皆が安心して利用するための基本的なルールです。詳細はサーバー内でご確認ください。</p>
-            <div class="server-rules" role="region" aria-labelledby="server-rules-title">
-  <h3 id="server-rules-title">サーバールール</h3>
-  <p>このサーバーを安心して利用できる環境に保つため、以下のルールを定めています。すべての参加者が気持ちよく交流できるよう、ご協力をお願いします。</p>
+            <ul>
+                <p>皆が安心して利用するための基本的なルールです。詳細はサーバー内でご確認ください。</p>
 
-  <ul>
+                <li>
+                    <h3>1. 荒らし行為・ハッキング行為・過度なメンションの禁止</h3>
+                    <p>
+                    <strong>サーバーの運営を妨げる行為</strong>、<strong>不正アクセスにつながる行為</strong>、または特定のメンバーへ大量のメンションを送るなどの迷惑行為は禁止です。
+                    落ち着いたコミュニケーション環境を守るため、<strong>悪質な行為には厳格に対処</strong>します。
+                    </p>
+                </li>
 
-    <li>
-      <div class="rule-title"><strong>1. 荒らし行為・ハッキング行為・過度なメンションの禁止</strong></div>
-      <p>
-        サーバーの運営を妨げる行為、不正アクセスにつながる行為、または特定のメンバーへ大量のメンションを送るなどの迷惑行為は禁止です。
-        落ち着いたコミュニケーション環境を守るため、悪質な行為には厳格に対処します。
-      </p>
-    </li>
+                <li>
+                    <h3>2. 暴言・誹謗中傷・不適切な発言の禁止</h3>
+                    <p>
+                    他者を傷つける発言、侮辱的な表現、<strong>過度に不快感を与える内容</strong>、公序良俗に反する発言は控えてください。
+                    個々の感じ方を尊重し、<strong>公共の場として適切な言動</strong>を心がけてください。
+                    </p>
+                </li>
 
-    <li>
-      <div class="rule-title"><strong>2. 暴言・誹謗中傷・不適切な発言の禁止</strong></div>
-      <p>
-        他者を傷つける発言、侮辱的な表現、過度に不快感を与える内容、公序良俗に反する発言は控えてください。
-        個々の感じ方を尊重し、公共の場として適切な言動を心がけてください。
-      </p>
-    </li>
+                <li>
+                    <h3>3. 宣伝行為は指定カテゴリーのみ許可</h3>
+                    <p>
+                    他サーバーや外部サービスの宣伝は<strong>「宣伝カテゴリー」内のみ</strong>で許可しています。
+                    それ以外のチャンネルでの宣伝は禁止です。また、<strong>自作Botの導入申請は管理権限を持つメンバーのみ可能</strong>であり、
+                    セキュリティの観点から<strong>無断でのBot追加は禁止</strong>しています。
+                    </p>
+                </li>
 
-    <li>
-      <div class="rule-title"><strong>3. 宣伝行為は指定カテゴリーのみ許可</strong></div>
-      <p>
-        他サーバーや外部サービスの宣伝は、「宣伝カテゴリー」内のみで許可しています。
-        それ以外のチャンネルでの宣伝は禁止です。また、自作Botの導入申請はモデレーターなどの管理権限を持つメンバーのみ可能であり、
-        セキュリティの観点から無断でのBot追加は認めていません。
-      </p>
-    </li>
+                <li>
+                    <h3>4. 危険サイト・悪質ファイルの共有禁止</h3>
+                    <p>
+                    <strong>フィッシングサイト</strong>、<strong>ウイルスを含むファイル</strong>、その他危険性のあるデータの共有は禁止です。
+                    不審なリンクを見かけた場合は、<strong>速やかに運営へ報告</strong>してください。
+                    </p>
+                </li>
 
-    <li>
-      <div class="rule-title"><strong>4. 危険サイト・悪質ファイルの共有禁止</strong></div>
-      <p>
-        フィッシングサイト、ウイルスを含むファイル、その他危険性のあるデータの共有は禁止です。
-        不審なリンクを見かけた場合は、速やかに運営へ報告してください。
-      </p>
-    </li>
+                <li>
+                    <h3>5. メンバーの引き抜き・無断勧誘の禁止</h3>
+                    <p>
+                    他コミュニティへの誘導を目的とした接触や、<strong>無断での勧誘行為は禁止</strong>しています。
+                    サーバーの独立性と参加者の安心感を守るため、これらの行為には<strong>厳しく対処</strong>します。
+                    </p>
+                </li>
 
-    <li>
-      <div class="rule-title"><strong>5. メンバーの引き抜き・無断勧誘の禁止</strong></div>
-      <p>
-        他コミュニティへの誘導を目的とした接触や、無断での勧誘行為は禁止しています。
-        サーバーの独立性と参加者の安心感を守るため、これらの行為には厳しく対処します。
-      </p>
-    </li>
+                <li>
+                    <h3>6. 他サーバーや外部への迷惑行為の禁止</h3>
+                    <p>
+                    他サーバーや第三者に迷惑がかかる行為、トラブルの持ち込み、<strong>迷惑を拡大させる行動は禁止</strong>です。
+                    インターネット上の基本的なマナー（ネチケット）を守り、<strong>節度ある利用</strong>を心がけてください。
+                    </p>
+                </li>
 
-    <li>
-      <div class="rule-title"><strong>6. 他サーバーや外部への迷惑行為の禁止</strong></div>
-      <p>
-        他サーバーや第三者に迷惑がかかる行為、トラブルの持ち込み、迷惑を拡大させる行動は禁止です。
-        インターネット上の基本的なマナー（ネチケット）を守り、節度ある利用を心がけてください。
-      </p>
-    </li>
+                <li>
+                    <h3>7. アカウント移行やXP移行に関する申請は管理者へ</h3>
+                    <p>
+                    アカウント移行によって認証ができなくなった場合や、XP移行が必要な場合は、<strong>サーバー主または副サーバー主へ直接DM</strong>でご連絡ください。
+                    個別の対応が必要となるため、<strong>公開チャンネルでの問い合わせは避けて</strong>ください。
+                    </p>
+                </li>
 
-    <li>
-      <div class="rule-title"><strong>7. アカウント移行やXP移行に関する申請は管理者へ</strong></div>
-      <p>
-        アカウント移行によって認証ができなくなった場合や、XP移行が必要な場合は、サーバー主または副サーバー主へ直接DMでご連絡ください。
-        個別の対応が必要となるため、公開チャンネルでの問い合わせは避けてください。
-      </p>
-    </li>
-
-    <li>
-      <div class="rule-title"><strong>8. その他の問題行為への運営判断</strong></div>
-      <p>
-        上記に明記されていない行為であっても、状況に応じて運営が判断し、注意・警告・制限など適切な措置を取る場合があります。
-        コミュニティの安全と快適性維持のため、ご理解とご協力をお願いいたします。
-      </p>
-    </li>
-
-  </ul>
-</div>
-
+                <li>
+                    <h3>8. その他の問題行為への運営判断</h3>
+                    <p>
+                    上記に明記されていない行為であっても、状況に応じて運営が判断し、<strong>注意・警告・制限などの措置</strong>を取る場合があります。
+                    コミュニティの安全と快適性維持のため、<strong>ご理解とご協力</strong>をお願いいたします。
+                    </p>
+                </li>
+            </ul>
             <button class="join_button" onclick="invite()">参加する</button>
         </section>
 
         <section id="admin">
             <h2>運営紹介</h2>
-            <h3>鯖主：はと</h3>
-            <p>【鯖主「はと」様の紹介文を入力】</p>
-            
-            </section>
-
-        <section id="sns">
-            <h2>公式SNS</h2>
             <ul>
                 <li>
-                    <a href="【公式XのURLを入力】" target="_blank" rel="noopener noreferrer">X (旧Twitter)</a>
+                    <div>
+                        <img src="./assets/administers/hato.png" alt="ユーザーアイコン">
+                        <div class="admin_tags">
+                            <small>鯖主</small>
+                        </div>
+                        <h3>はと</h3>
+                    </div>
+                    <p>鯖主。「はとあげ」などとして基本的にみんなに食べられています。</p>
                 </li>
                 <li>
-                    <a href="【公式YouTubeチャンネルのURLを入力】" target="_blank" rel="noopener noreferrer">YouTube</a>
+                    <div>
+                        <img src="./assets/administers/wataamee.png" alt="ユーザーアイコン">
+                        <div class="admin_tags">
+                            <small>副鯖主</small>
+                            <small>Bot開発者</small>
+                        </div>
+                        <h3>わたあめえ</h3>
+                    </div>
+                    <p>副鯖主。SakuraBOTの開発者です。</p>
+                </li>
+                <li>
+                    <div>
+                        <img src="./assets/administers/shiho.png" alt="ユーザーアイコン">
+                        <div class="admin_tags">
+                            <small>風紀員</small>
+                            <small>飼育員</small>
+                        </div>
+                        <h3>志歩</h3>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <img src="./assets/administers/kakeru.webp" alt="ユーザーアイコン">
+                        <div class="admin_tags">
+                            <small>風紀員</small>
+                            <small>飼育員</small>
+                        </div>
+                        <h3>架流さん</h3>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <img src="./assets/administers/kakuzato.png" alt="ユーザーアイコン">
+                        <div class="admin_tags">
+                            <small>飼育員</small>
+                        </div>
+                        <h3>角砂糖</h3>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <img src="./assets/administers/dlc.png" alt="ユーザーアイコン">
+                        <div class="admin_tags">
+                            <small>飼育員</small>
+                        </div>
+                        <h3>DLC</h3>
+                    </div>
+                </li>
+                
+                <li>
+                    <h3>And so on...</h3>
+                    <p>（めんどくさくなっただけ）</p>
                 </li>
             </ul>
         </section>
 
-        <section id="faq">
-            <h2>よくある質問（FAQ）</h2>
-            <dl>
-                <dt>【質問1を入力】</dt>
-                <dd>【回答1を入力】</dd>
-                <dt>【質問2を入力】</dt>
-                <dd>【回答2を入力】</dd>
-            </dl>
+        <section id="sns">
+            <h2>公式SNS</h2>
+            <ul>
+                <li class="sns_x">
+                    <a class="twitter-timeline" href="https://twitter.com/SakuraTKOficial?ref_src=twsrc%5Etfw">Tweets by SakuraTKOficial</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </li>
+            </ul>
         </section>
 
         <section id="contact">
             <h2>お問い合わせ</h2>
-            <p>ご意見やご質問、トラブル報告はこちらからお願いいたします。</p>
-            <p>フォーム設置までの臨時連絡先: contact@kotoca.net</p>
+            <form action="https://your-render-service.onrender.com/endpoint" method="post">
+            <p>ご意見やご質問はこちらからお願いいたします。</p>
+                <label for="name">名前(任意)
+                <input type="text" id="name" name="name" required></label>
+                
+                <label for="email">メールアドレス(任意)
+                <input type="email" id="email" name="email"></label>
+
+                <label for="message">メッセージ
+                <textarea id="message" name="message" required></textarea></label>
+                
+                <button type="submit">送信</button>
+            </form>
+
         </section>
 
         <section class="join-button-footer">
@@ -239,7 +297,7 @@
     </main>
 
     <footer>
-        <p>&copy; さくら雑談王国 All Rights Reserved.</p>
+        <p>&copy; 架流さん All Rights Reserved.</p>
         <script>
             function invite(){
                 const params = new URLSearchParams(window.location.search);
