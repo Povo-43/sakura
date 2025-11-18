@@ -1,3 +1,4 @@
+//?invite=【招待リンク】で　招待リンクをその人のものにする。
 function invite(){
     const params = new URLSearchParams(window.location.search);
     const code = params.has("invite") && /^[A-Za-z0-9-]+$/.test(params.get("invite"))
@@ -10,7 +11,8 @@ function invite(){
 //データ取得テスト
 document.addEventListener("DOMContentLoaded", async () => {
   try {
-    const res = await fetch("https://sites-backends.onrender.com/get?ch=bots");
+    //https://sites-backends.onrender.com/get?ch=announce
+    const res = await fetch("https://bot.sakurahp.f5.si/api");
     if (!res.ok) throw new Error("Fetch失敗: " + res.status);
 
     const data = await res.json();
