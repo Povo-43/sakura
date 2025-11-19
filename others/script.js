@@ -11,12 +11,39 @@ function invite(){
 //データ取得テスト
 document.addEventListener("DOMContentLoaded", async () => {
   try {
-    //https://sites-backends.onrender.com/get?ch=announce
-    const res = await fetch("https://bot.sakurahp.f5.si/api");
+    const res = await fetch("https://sites-backends.onrender.com/get?ch=announce");
     if (!res.ok) throw new Error("Fetch失敗: " + res.status);
 
     const data = await res.json();
     console.log("取得データ:", data);
+    const result = data.map(item => {
+    const [date, ...bodyParts] = item.split('\n');
+      return {
+        date,
+        body: bodyParts.join('\n')
+      };
+    });
+    console.log(result);
+    const box = document.getElementById("news_box");
+    box.textContent = ""; // 初期化
+
+    result.forEach((entry, index) => {
+    const p = document.createElement("p");
+    p.textContent = entry.date;
+
+    const h3 = document.createElement("h3");
+    h3.textContent = entry.body;
+
+    box.appendChild(p);
+    box.appendChild(h3);
+
+    // ★最後の要素以外だけ水平線を入れる
+    if (index !== result.length - 1) {
+      const hr = document.createElement("hr");
+      box.appendChild(hr);
+    }
+  });
+
   } catch (err) {
     console.error("エラー:", err);
   }
