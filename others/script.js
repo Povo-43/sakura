@@ -1,96 +1,124 @@
-//?invite=【招待リンク】で　招待リンクをその人のものにする。
-function invite(){
-    const params = new URLSearchParams(window.location.search);
-    const code = params.has("invite") && /^[A-Za-z0-9-]+$/.test(params.get("invite"))
-        ? params.get("invite")
-        : 'z7AmmNHvKR';
-
-    window.open('https://discord.gg/' + code, '_blank');
-}
-
-//データ取得
 document.addEventListener("DOMContentLoaded", async () => {
-  // --- お知らせ取得 ---
-  try {
-    const res = await fetch("https://api.kotoca.net/get?ch=announce");
-    if (!res.ok) throw new Error("Fetch失敗: " + res.status);
+    let finalCode = "z7AmmNHvKR"; // デフォルト
+    const allowedGuildId = "1208962938388484107";
+    const overlay = document.getElementById("overlay");
 
-    const data = await res.json();
-    const box = document.getElementById("news_box");
-    box.textContent = "";
+    // invite 検証
+    async function validateInvite() {
+        const params = new URLSearchParams(window.location.search);
+        const rawCode = params.has("invite") && /^[A-Za-z0-9-]+$/.test(params.get("invite"))
+            ? params.get("invite")
+            : null;
+        if (!rawCode) return;
 
-    data.forEach((entry, index) => {
-      const date = new Date(entry.createdAt).toLocaleString();
+        try {
+            const res = await fetch(`https://bot.sakurahp.f5.si/api/invites/${rawCode}`);
+            if (!res.ok) return;
 
-      const lines = entry.content.split('\n');
-      let titleLineIndex = lines.findIndex(line => line.startsWith('# '));
-      if (titleLineIndex === -1) titleLineIndex = 0;
-      const title = lines[titleLineIndex].replace(/^#\s*/, '');
-      const bodyLines = lines.slice(titleLineIndex + 1);
-      const body = bodyLines.join('\n');
+            const data = await res.json();
+            if (data.match === true && data.invite.guild?.id === allowedGuildId) {
+                finalCode = rawCode;
+            }
+        } catch (err) {
+            console.error("招待コード検証エラー:", err);
+        }
+    }
 
-      const pDate = document.createElement("p");
-      pDate.textContent = date;
+    // ボタン処理
+    const buttons = document.querySelectorAll(".join_button");
+    buttons.forEach(btn => {
+        btn.addEventListener("click", async () => {
+            console.log("ボタン押された", finalCode);
+            overlay.style.display = "flex";
 
-      const h3 = document.createElement("h3");
-      h3.textContent = title;
-      h3.style.cursor = "pointer";
+            await validateInvite();
 
-      // 折りたたみ用の div
-      
-      const divBody = document.createElement("div");
-      divBody.textContent = body;
-      divBody.style.boxShadow = "none";
-      divBody.style.border = "none";
-      divBody.style.display = "none";
-      divBody.style.whiteSpace = "pre-wrap";
-
-      h3.addEventListener("click", () => {
-        divBody.style.display = divBody.style.display === "none" ? "block" : "none";
-      });
-
-      box.appendChild(pDate);
-      box.appendChild(h3);
-      box.appendChild(divBody);
-
-      // ★最後の要素以外だけ水平線
-      if (index !== data.length - 1) {
-        const hr = document.createElement("hr");
-        box.appendChild(hr);
-      }
+            window.open(`https://discord.gg/${finalCode}`, "_blank");
+            setTimeout(() => overlay.style.display = "none", 1000);
+        });
     });
 
-  } catch (err) {
-    console.error("お知らせ読み込みでエラー:", err);
-  }
-  // --- サーバー情報取得 ---
-  try {
-    const res = await fetch("https://bot.sakurahp.f5.si/api");
-    if (!res.ok) throw new Error("Fetch失敗: " + res.status);
+    // すぐ検証
+    await validateInvite();
 
-    const data = await res.json();
-    console.log("取得データ:", data);
+    // --- お知らせ取得 ---
+    try {
+        const res = await fetch("https://api.kotoca.net/get?ch=announce");
+        if (!res.ok) throw new Error("Fetch失敗: " + res.status);
 
-    // --- DOM更新 ---
-    const memberSpan = document.getElementById("member-count");
-    const onlineSpan = document.getElementById("online-count");
-    const vcSpan = document.getElementById("vc-count");
-    const timestampSpan = document.getElementById("server_info_timestamp");
+        const data = await res.json();
+        const box = document.getElementById("news_box");
+        box.textContent = "";
 
-    if (memberSpan) memberSpan.textContent = data.guild.member ?? "取得不可";
-    if (onlineSpan) onlineSpan.textContent = data.guild.online ?? "取得不可";
-    if (vcSpan) vcSpan.textContent = data.guild.voice ?? "取得不可";
-    if (timestampSpan) timestampSpan.textContent = data.timestamp ?? "エラーにより取得できませんでした";
+        data.forEach((entry, index) => {
+            const date = new Date(entry.createdAt).toLocaleString();
 
-  } catch (err) {
-    console.error("サーバー情報読み込みでエラー:", err);
+            const lines = entry.content.split('\n');
+            let titleLineIndex = lines.findIndex(line => line.startsWith('# '));
+            if (titleLineIndex === -1) titleLineIndex = 0;
+            const title = lines[titleLineIndex].replace(/^#\s*/, '');
+            const bodyLines = lines.slice(titleLineIndex + 1);
+            const body = bodyLines.join('\n');
 
-    const memberSpan = document.getElementById("member-count");
-    const onlineSpan = document.getElementById("online-count");
-    const vcSpan = document.getElementById("vc-count");
+            const pDate = document.createElement("p");
+            pDate.textContent = date;
 
-    if (memberSpan) memberSpan.textContent = "エラー";
-    if (onlineSpan) onlineSpan.textContent = "エラー";
-    if (vcSpan) vcSpan.textContent = "エラー";
-  }
+            const h3 = document.createElement("h3");
+            h3.textContent = title;
+            h3.style.cursor = "pointer";
+
+            
+      const divBody = document.createElement("div");
+            divBody.textContent = body;
+            divBody.style.boxShadow = "none";
+            divBody.style.border = "none";
+            divBody.style.display = "none";
+            divBody.style.whiteSpace = "pre-wrap";
+
+            h3.addEventListener("click", () => {
+                divBody.style.display = divBody.style.display === "none" ? "block" : "none";
+            });
+
+            box.appendChild(pDate);
+            box.appendChild(h3);
+            box.appendChild(divBody);
+
+            if (index !== data.length - 1) {
+                const hr = document.createElement("hr");
+                box.appendChild(hr);
+            }
+        });
+
+    } catch (err) {
+        console.error("お知らせ読み込みでエラー:", err);
+    }
+
+    // --- サーバー情報取得 ---
+    try {
+        const res = await fetch("https://bot.sakurahp.f5.si/api");
+        if (!res.ok) throw new Error("Fetch失敗: " + res.status);
+
+        const data = await res.json();
+
+        const memberSpan = document.getElementById("member-count");
+        const onlineSpan = document.getElementById("online-count");
+        const vcSpan = document.getElementById("vc-count");
+        const timestampSpan = document.getElementById("server_info_timestamp");
+
+        if (memberSpan) memberSpan.textContent = data.guild.member ?? "取得不可";
+        if (onlineSpan) onlineSpan.textContent = data.guild.online ?? "取得不可";
+        if (vcSpan) vcSpan.textContent = data.guild.voice ?? "取得不可";
+        if (timestampSpan) timestampSpan.textContent = data.timestamp ?? "エラーにより取得できませんでした";
+
+    } catch (err) {
+        console.error("サーバー情報読み込みでエラー:", err);
+
+        const memberSpan = document.getElementById("member-count");
+        const onlineSpan = document.getElementById("online-count");
+        const vcSpan = document.getElementById("vc-count");
+
+        if (memberSpan) memberSpan.textContent = "エラー";
+        if (onlineSpan) onlineSpan.textContent = "エラー";
+        if (vcSpan) vcSpan.textContent = "エラー";
+    }
 });
