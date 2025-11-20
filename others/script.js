@@ -1,30 +1,37 @@
-// ?invite=【招待コード】で指定 → 判定して正しければそのコードで開く
-async function invite() {
+let finalCode = "z7AmmNHvKR"; // デフォルト
+const allowedGuildId = "1208962938388484107";
+
+// invite 検証用の async 関数
+async function validateInvite() {
     const params = new URLSearchParams(window.location.search);
     const rawCode = params.has("invite") && /^[A-Za-z0-9-]+$/.test(params.get("invite"))
         ? params.get("invite")
         : null;
 
-    const defaultCode = "z7AmmNHvKR";
-    let finalCode = defaultCode;
+    if (!rawCode) return;
 
-    if (rawCode) {
-        try {
-            const res = await fetch(`https://bot.sakurahp.f5.si/api/invites/${rawCode}`);
-            if (res.ok) {
-                const data = await res.json();
+    try {
+        const res = await fetch(`https://bot.sakurahp.f5.si/api/invites/${rawCode}`);
+        if (!res.ok) return;
 
-                if (data.match === true) {
-                    finalCode = rawCode;
-                }
-            }
-        } catch (err) {
-            console.error("検証エラー:", err);
+        const data = await res.json();
+        if (data.match === true && data.invite.guild?.id === allowedGuildId) {
+            finalCode = rawCode; // OKなら書き換え
         }
+    } catch (err) {
+        console.error("招待コード検証エラー:", err);
     }
+}
 
+// ページロード時に即検証（非同期だけど await は不要）
+validateInvite();
+
+// 元の invite 関数やボタンイベントはそのまま
+const btn = document.querySelector(".join_button");
+async function invite() {
     window.open(`https://discord.gg/${finalCode}`, "_blank");
 }
+btn.addEventListener("click", invite);
 
 //データ取得
 document.addEventListener("DOMContentLoaded", async () => {
