@@ -32,18 +32,20 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     btn.disabled = true; // 最初は押せない
 
-    // invite を検証
+    // ページロード時に invite を検証して finalCode をセット
     finalCode = await validateInvite();
-    btn.disabled = false; // 検証完了で押せるように
+    btn.disabled = false; // 検証完了でボタン有効化
 
-    // クリック時に開く
-const overlay = document.getElementById("overlay");
-btn.addEventListener("click", async () => {
-    overlay.style.display = "flex"; // オーバーレイ表示
-    await someAsyncProcess();       // 例: invite 検証
-    window.open(`https://discord.gg/${finalCode}`, "_blank");
-    overlay.style.display = "none"; // 任意: 閉じる
+    // クリック時に overlay と invite 検証
+    const overlay = document.getElementById("overlay");
+    btn.addEventListener("click", async () => {
+        overlay.style.display = "flex"; // オーバーレイ表示
+        // もう一度検証したい場合はここで await validateInvite()
+        window.open(`https://discord.gg/${finalCode}`, "_blank");
+        overlay.style.display = "none"; // 任意で閉じる
+    });
 });
+
 
     
     // --- お知らせ取得 ---
