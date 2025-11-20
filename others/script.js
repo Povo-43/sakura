@@ -30,12 +30,7 @@ async function validateInvite() {
 // 最初はボタン押せない状態
 btn.disabled = true;
 
-// ページロード時に invite を検証
-document.addEventListener("DOMContentLoaded", async () => {
-    finalCode = await validateInvite(); // 検証完了するまで待つ
-    btn.disabled = false;               // 検証完了でボタン有効化
-    console.log("findom")
-});
+
 
 // ボタンを押したら finalCode で開く
 btn.addEventListener("click", () => {
@@ -43,6 +38,9 @@ btn.addEventListener("click", () => {
 });
 
 document.addEventListener("DOMContentLoaded", async () => {
+    finalCode = await validateInvite();
+    btn.disabled = false;
+    
     // --- お知らせ取得 ---
     try {
         const res = await fetch("https://api.kotoca.net/get?ch=announce");
