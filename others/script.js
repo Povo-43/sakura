@@ -28,11 +28,14 @@ validateInvite();
 
 document.addEventListener("DOMContentLoaded", async () => {
     const overlay = document.getElementById("overlay");
+    console.log(overlay);
     const buttons = document.querySelectorAll(".join_button");
+    console.log(buttons.length);
 
     // 参加ボタン全てにイベント付与
     buttons.forEach(btn => {
         btn.addEventListener("click", async () => {
+            console.log("ボタン押された");
             overlay.style.display = "flex"; // overlay表示
 
             // 念のためボタンクリック時に invite 検証
