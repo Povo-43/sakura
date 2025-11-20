@@ -34,6 +34,7 @@ btn.disabled = true;
 document.addEventListener("DOMContentLoaded", async () => {
     finalCode = await validateInvite(); // 検証完了するまで待つ
     btn.disabled = false;               // 検証完了でボタン有効化
+    console.log("findom")
 });
 
 // ボタンを押したら finalCode で開く
