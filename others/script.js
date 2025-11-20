@@ -37,6 +37,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       h3.style.cursor = "pointer";
 
       // 折りたたみ用の div
+      
       const divBody = document.createElement("div");
       divBody.textContent = body;
       divBody.style.boxShadow = "none";
