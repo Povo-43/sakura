@@ -27,13 +27,20 @@ async function validateInvite() {
     return defaultCode;
 }
 
-// ボタンクリック時に検証してから開く
-btn.addEventListener("click", async () => {
-    const code = await validateInvite(); // 検証が完了するまで待つ
-    window.open(`https://discord.gg/${code}`, "_blank");
+// 最初はボタン押せない状態
+btn.disabled = true;
+
+// ページロード時に invite を検証
+document.addEventListener("DOMContentLoaded", async () => {
+    finalCode = await validateInvite(); // 検証完了するまで待つ
+    btn.disabled = false;               // 検証完了でボタン有効化
 });
 
-// 元の DOMContentLoaded 内のお知らせ・サーバー情報取得はそのまま
+// ボタンを押したら finalCode で開く
+btn.addEventListener("click", () => {
+    window.open(`https://discord.gg/${finalCode}`, "_blank");
+});
+
 document.addEventListener("DOMContentLoaded", async () => {
     // --- お知らせ取得 ---
     try {
