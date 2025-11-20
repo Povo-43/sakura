@@ -26,18 +26,17 @@ async function validateInvite() {
     return defaultCode;
 }
 
-// 最初はボタン押せない状態
-btn.disabled = true;
-
 document.addEventListener("DOMContentLoaded", async () => {
     const btn = document.querySelector(".join_button");
-    if (!btn) return;
+    if (!btn) return; // ボタンが存在しないなら処理を止める
 
-    btn.disabled = true;
+    btn.disabled = true; // 最初は押せない
 
+    // invite を検証
     finalCode = await validateInvite();
-    btn.disabled = false;
+    btn.disabled = false; // 検証完了で押せるように
 
+    // クリック時に開く
     btn.addEventListener("click", () => {
         window.open(`https://discord.gg/${finalCode}`, "_blank");
     });
